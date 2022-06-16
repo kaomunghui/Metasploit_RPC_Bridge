@@ -1,16 +1,19 @@
 from python_nmap_scan import nmap_ip_scan, nmap_port_scan
 from python_ssh import ssh_attack
 from python_smb import smb_attack
+import sys
 
 def main():
-    ip = '192.168.56.*'
+    # ip = '192.168.56.*'
+    ip = sys.argv[1]
+    port = sys.argv[2]
     # 掃描網域中有活動的主機
     ip_list = nmap_ip_scan(ip)
     for i in ip_list:
         print(i + " status is up")
 
-    # 對在線的主機掃描tcp port
-    host_port_os = nmap_port_scan(ip_list, "20-450")
+    # 對在線的主機掃描tcp port  20-450
+    host_port_os = nmap_port_scan(ip_list, port)
     for j in host_port_os:
         print(j)
 
